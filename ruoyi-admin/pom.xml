@@ -87,7 +87,7 @@
             <artifactId>ruoyi-demo</artifactId>
         </dependency>
 
-        <!--  demo模块  -->
+        <!--  edu模块  -->
         <dependency>
             <groupId>org.dromara</groupId>
             <artifactId>ruoyi-edu</artifactId>

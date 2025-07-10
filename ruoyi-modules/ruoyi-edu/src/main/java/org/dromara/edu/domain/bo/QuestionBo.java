@@ -25,6 +25,8 @@ public class QuestionBo extends BaseEntity {
      */
     private Long id;
 
+    private Long bankId;
+
     /**
      * 题目内容
      */

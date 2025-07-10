@@ -10,11 +10,11 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.dromara.edu.domain.bo.QuestionBo;
-import org.dromara.edu.domain.vo.QuestionVo;
-import org.dromara.edu.domain.Question;
-import org.dromara.edu.mapper.QuestionMapper;
-import org.dromara.edu.service.IQuestionService;
+import org.dromara.edu.domain.bo.ExamBankBo;
+import org.dromara.edu.domain.vo.ExamBankVo;
+import org.dromara.edu.domain.ExamBank;
+import org.dromara.edu.mapper.ExamBankMapper;
+import org.dromara.edu.service.IExamBankService;
 
 import java.util.List;
 import java.util.Map;
@@ -24,14 +24,14 @@ import java.util.Collection;
  * 题库Service业务层处理
  *
  * @author Pyx
- * @date 2025-07-03
+ * @date 2025-07-10
  */
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class QuestionServiceImpl implements IQuestionService {
+public class ExamBankServiceImpl implements IExamBankService {
 
-    private final QuestionMapper baseMapper;
+    private final ExamBankMapper baseMapper;
 
     /**
      * 查询题库
@@ -40,7 +40,7 @@ public class QuestionServiceImpl implements IQuestionService {
      * @return 题库
      */
     @Override
-    public QuestionVo queryById(Long id){
+    public ExamBankVo queryById(Long id){
         return baseMapper.selectVoById(id);
     }
 
@@ -52,9 +52,9 @@ public class QuestionServiceImpl implements IQuestionService {
      * @return 题库分页列表
      */
     @Override
-    public TableDataInfo<QuestionVo> queryPageList(QuestionBo bo, PageQuery pageQuery) {
-        LambdaQueryWrapper<Question> lqw = buildQueryWrapper(bo);
-        Page<QuestionVo> result = baseMapper.selectVoPage(pageQuery.build(), lqw);
+    public TableDataInfo<ExamBankVo> queryPageList(ExamBankBo bo, PageQuery pageQuery) {
+        LambdaQueryWrapper<ExamBank> lqw = buildQueryWrapper(bo);
+        Page<ExamBankVo> result = baseMapper.selectVoPage(pageQuery.build(), lqw);
         return TableDataInfo.build(result);
     }
 
@@ -65,19 +65,16 @@ public class QuestionServiceImpl implements IQuestionService {
      * @return 题库列表
      */
     @Override
-    public List<QuestionVo> queryList(QuestionBo bo) {
-        LambdaQueryWrapper<Question> lqw = buildQueryWrapper(bo);
+    public List<ExamBankVo> queryList(ExamBankBo bo) {
+        LambdaQueryWrapper<ExamBank> lqw = buildQueryWrapper(bo);
         return baseMapper.selectVoList(lqw);
     }
 
-    private LambdaQueryWrapper<Question> buildQueryWrapper(QuestionBo bo) {
+    private LambdaQueryWrapper<ExamBank> buildQueryWrapper(ExamBankBo bo) {
         Map<String, Object> params = bo.getParams();
-        LambdaQueryWrapper<Question> lqw = Wrappers.lambdaQuery();
-        lqw.orderByAsc(Question::getId);
-        lqw.like(StringUtils.isNotBlank(bo.getQuestionContent()), Question::getQuestionContent, bo.getQuestionContent());
-        lqw.eq(bo.getBankId() != null, Question::getBankId, bo.getBankId());
-        lqw.eq(bo.getQuestionType() != null, Question::getQuestionType, bo.getQuestionType());
-        lqw.eq(bo.getDifficulty() != null, Question::getDifficulty, bo.getDifficulty());
+        LambdaQueryWrapper<ExamBank> lqw = Wrappers.lambdaQuery();
+        lqw.orderByAsc(ExamBank::getId);
+        lqw.like(StringUtils.isNotBlank(bo.getBankName()), ExamBank::getBankName, bo.getBankName());
         return lqw;
     }
 
@@ -88,9 +85,12 @@ public class QuestionServiceImpl implements IQuestionService {
      * @return 是否新增成功
      */
     @Override
-    public Boolean insertByBo(QuestionBo bo) {
-        Question add = MapstructUtils.convert(bo, Question.class);
+    public Boolean insertByBo(ExamBankBo bo) {
+
+        ExamBank add = MapstructUtils.convert(bo, ExamBank.class);
+
         validEntityBeforeSave(add);
+
         boolean flag = baseMapper.insert(add) > 0;
         if (flag) {
             bo.setId(add.getId());
@@ -105,8 +105,8 @@ public class QuestionServiceImpl implements IQuestionService {
      * @return 是否修改成功
      */
     @Override
-    public Boolean updateByBo(QuestionBo bo) {
-        Question update = MapstructUtils.convert(bo, Question.class);
+    public Boolean updateByBo(ExamBankBo bo) {
+        ExamBank update = MapstructUtils.convert(bo, ExamBank.class);
         validEntityBeforeSave(update);
         return baseMapper.updateById(update) > 0;
     }
@@ -114,7 +114,7 @@ public class QuestionServiceImpl implements IQuestionService {
     /**
      * 保存前的数据校验
      */
-    private void validEntityBeforeSave(Question entity){
+    private void validEntityBeforeSave(ExamBank entity){
         //TODO 做一些数据校验,如唯一约束
     }
 

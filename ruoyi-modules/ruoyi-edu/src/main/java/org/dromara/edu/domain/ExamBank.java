@@ -8,45 +8,59 @@ import lombok.EqualsAndHashCode;
 import java.io.Serial;
 
 /**
- * 题库对象 exam_question
+ * 题库对象 exam_bank
  *
  * @author Pyx
- * @date 2025-07-03
+ * @date 2025-07-10
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-@TableName("exam_question")
-public class Question extends TenantEntity {
+@TableName("exam_bank")
+public class ExamBank extends TenantEntity {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
     /**
-     * 题目ID
+     * 题库ID
      */
     @TableId(value = "id")
     private Long id;
 
-    private Long bankId;
     /**
-     * 题目内容
+     * 题库名称
      */
-    private String questionContent;
+    private String bankName;
 
     /**
-     * 题型
+     * 单选题数量
      */
-    private Long questionType;
+    private Long singleChoiceCount;
 
     /**
-     * 难度
+     * 多选题数量
      */
-    private Long difficulty;
+    private Long multipleChoiceCount;
 
     /**
-     * 正确答案
+     * 填空题数量
      */
-    private String correctAnswer;
+    private Long fillBlankCount;
+
+    /**
+     * 判断题数量
+     */
+    private Long judgeCount;
+
+    /**
+     * 问答题数量
+     */
+    private Long answerCount;
+
+    /**
+     * 题帽题数量
+     */
+    private Long caseCount;
 
     /**
      * 删除标志（0-正常，1-删除）

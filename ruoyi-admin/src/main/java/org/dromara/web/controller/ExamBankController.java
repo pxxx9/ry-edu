@@ -18,45 +18,44 @@ import org.dromara.common.core.validate.AddGroup;
 import org.dromara.common.core.validate.EditGroup;
 import org.dromara.common.log.enums.BusinessType;
 import org.dromara.common.excel.utils.ExcelUtil;
-import org.dromara.edu.domain.vo.QuestionVo;
-import org.dromara.edu.domain.bo.QuestionBo;
-import org.dromara.edu.service.IQuestionService;
+import org.dromara.edu.domain.vo.ExamBankVo;
+import org.dromara.edu.domain.bo.ExamBankBo;
+import org.dromara.edu.service.IExamBankService;
 import org.dromara.common.mybatis.core.page.TableDataInfo;
 
 /**
  * 题库
  *
  * @author Pyx
- * @date 2025-07-03
+ * @date 2025-07-10
  */
+@Slf4j
 @Validated
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/question/question")
-@Slf4j
-public class QuestionController extends BaseController {
+@RequestMapping("/question/bank")
+public class ExamBankController extends BaseController {
 
-    private final IQuestionService questionService;
+    private final IExamBankService examBankService;
 
     /**
      * 查询题库列表
      */
-    @SaCheckPermission("question:question:list")
+    @SaCheckPermission("question:bank:list")
     @GetMapping("/list")
-    public TableDataInfo<QuestionVo> list(QuestionBo bo, PageQuery pageQuery) {
-        log.info("查询的参数是：{}",bo);
-        return questionService.queryPageList(bo, pageQuery);
+    public TableDataInfo<ExamBankVo> list(ExamBankBo bo, PageQuery pageQuery) {
+        return examBankService.queryPageList(bo, pageQuery);
     }
 
     /**
      * 导出题库列表
      */
-    @SaCheckPermission("question:question:export")
+    @SaCheckPermission("question:bank:export")
     @Log(title = "题库", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(QuestionBo bo, HttpServletResponse response) {
-        List<QuestionVo> list = questionService.queryList(bo);
-        ExcelUtil.exportExcel(list, "题库", QuestionVo.class, response);
+    public void export(ExamBankBo bo, HttpServletResponse response) {
+        List<ExamBankVo> list = examBankService.queryList(bo);
+        ExcelUtil.exportExcel(list, "题库", ExamBankVo.class, response);
     }
 
     /**
@@ -64,33 +63,34 @@ public class QuestionController extends BaseController {
      *
      * @param id 主键
      */
-    @SaCheckPermission("question:question:query")
+    @SaCheckPermission("question:bank:query")
     @GetMapping("/{id}")
-    public R<QuestionVo> getInfo(@NotNull(message = "主键不能为空")
+    public R<ExamBankVo> getInfo(@NotNull(message = "主键不能为空")
                                      @PathVariable Long id) {
-        return R.ok(questionService.queryById(id));
+        return R.ok(examBankService.queryById(id));
     }
 
     /**
      * 新增题库
      */
-    @SaCheckPermission("question:question:add")
+    @SaCheckPermission("question:bank:add")
     @Log(title = "题库", businessType = BusinessType.INSERT)
     @RepeatSubmit()
     @PostMapping()
-    public R<Void> add(@Validated(AddGroup.class) @RequestBody QuestionBo bo) {
-        return toAjax(questionService.insertByBo(bo));
+    public R<Void> add(@Validated(AddGroup.class) @RequestBody ExamBankBo bo) {
+        log.info("controller新增题库:{}",bo);
+        return toAjax(examBankService.insertByBo(bo));
     }
 
     /**
      * 修改题库
      */
-    @SaCheckPermission("question:question:edit")
+    @SaCheckPermission("question:bank:edit")
     @Log(title = "题库", businessType = BusinessType.UPDATE)
     @RepeatSubmit()
     @PutMapping()
-    public R<Void> edit(@Validated(EditGroup.class) @RequestBody QuestionBo bo) {
-        return toAjax(questionService.updateByBo(bo));
+    public R<Void> edit(@Validated(EditGroup.class) @RequestBody ExamBankBo bo) {
+        return toAjax(examBankService.updateByBo(bo));
     }
 
     /**
@@ -98,11 +98,11 @@ public class QuestionController extends BaseController {
      *
      * @param ids 主键串
      */
-    @SaCheckPermission("question:question:remove")
+    @SaCheckPermission("question:bank:remove")
     @Log(title = "题库", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
     public R<Void> remove(@NotEmpty(message = "主键不能为空")
                           @PathVariable Long[] ids) {
-        return toAjax(questionService.deleteWithValidByIds(List.of(ids), true));
+        return toAjax(examBankService.deleteWithValidByIds(List.of(ids), true));
     }
 }

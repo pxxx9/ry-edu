@@ -17,9 +17,9 @@ import org.dromara.common.core.validate.AddGroup;
 import org.dromara.common.core.validate.EditGroup;
 import org.dromara.common.log.enums.BusinessType;
 import org.dromara.common.excel.utils.ExcelUtil;
-import org.dromara.domain.vo.StudentGroupVo;
-import org.dromara.domain.bo.StudentGroupBo;
-import org.dromara.service.IStudentGroupService;
+import org.dromara.edu.domain.vo.StudentGroupVo;
+import org.dromara.edu.domain.bo.StudentGroupBo;
+import org.dromara.edu.service.IStudentGroupService;
 import org.dromara.common.mybatis.core.page.TableDataInfo;
 
 /**

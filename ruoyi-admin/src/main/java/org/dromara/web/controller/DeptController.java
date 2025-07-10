@@ -16,9 +16,9 @@ import org.dromara.common.core.validate.AddGroup;
 import org.dromara.common.core.validate.EditGroup;
 import org.dromara.common.log.enums.BusinessType;
 import org.dromara.common.excel.utils.ExcelUtil;
-import org.dromara.domain.vo.DeptVo;
-import org.dromara.domain.bo.DeptBo;
-import org.dromara.service.IDeptService;
+import org.dromara.edu.domain.vo.DeptVo;
+import org.dromara.edu.domain.bo.DeptBo;
+import org.dromara.edu.service.IDeptService;
 
 /**
  * 部门

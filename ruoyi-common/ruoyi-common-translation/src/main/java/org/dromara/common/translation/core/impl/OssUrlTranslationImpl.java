@@ -5,6 +5,7 @@ import org.dromara.common.translation.annotation.TranslationType;
 import org.dromara.common.translation.constant.TransConstant;
 import org.dromara.common.translation.core.TranslationInterface;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * OSS翻译实现
@@ -14,6 +15,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @TranslationType(type = TransConstant.OSS_ID_TO_URL)
 public class OssUrlTranslationImpl implements TranslationInterface<String> {
+
 
     private final OssService ossService;
 

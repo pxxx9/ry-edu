@@ -2,6 +2,7 @@ package org.dromara.system.service;
 
 import org.dromara.common.mybatis.core.page.PageQuery;
 import org.dromara.common.mybatis.core.page.TableDataInfo;
+import org.dromara.system.domain.ResourceTypeEnum;
 import org.dromara.system.domain.bo.SysOssBo;
 import org.dromara.system.domain.vo.SysOssVo;
 import jakarta.servlet.http.HttpServletResponse;

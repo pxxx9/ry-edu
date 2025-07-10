@@ -14,6 +14,7 @@ import org.dromara.common.log.enums.BusinessType;
 import org.dromara.common.mybatis.helper.DataPermissionHelper;
 import org.dromara.common.satoken.utils.LoginHelper;
 import org.dromara.common.web.core.BaseController;
+import org.dromara.system.domain.ResourceTypeEnum;
 import org.dromara.system.domain.bo.SysUserBo;
 import org.dromara.system.domain.bo.SysUserPasswordBo;
 import org.dromara.system.domain.bo.SysUserProfileBo;

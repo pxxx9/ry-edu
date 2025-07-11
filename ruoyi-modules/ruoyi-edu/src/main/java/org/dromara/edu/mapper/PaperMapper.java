@@ -8,7 +8,7 @@ import org.dromara.common.mybatis.core.mapper.BaseMapperPlus;
  * 试卷Mapper接口
  *
  * @author Pyx
- * @date 2025-07-03
+ * @date 2025-07-11
  */
 public interface PaperMapper extends BaseMapperPlus<Paper, PaperVo> {
 

@@ -1,10 +1,9 @@
 package org.dromara.edu.service;
 
-
-import org.dromara.common.mybatis.core.page.PageQuery;
-import org.dromara.common.mybatis.core.page.TableDataInfo;
-import org.dromara.edu.domain.bo.PaperBo;
 import org.dromara.edu.domain.vo.PaperVo;
+import org.dromara.edu.domain.bo.PaperBo;
+import org.dromara.common.mybatis.core.page.TableDataInfo;
+import org.dromara.common.mybatis.core.page.PageQuery;
 
 import java.util.Collection;
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.List;
  * 试卷Service接口
  *
  * @author Pyx
- * @date 2025-07-03
+ * @date 2025-07-11
  */
 public interface IPaperService {
 

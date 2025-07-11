@@ -16,7 +16,7 @@ import java.io.Serializable;
  * 试卷视图对象 exam_paper
  *
  * @author Pyx
- * @date 2025-07-03
+ * @date 2025-07-11
  */
 @Data
 @ExcelIgnoreUnannotated
@@ -33,41 +33,43 @@ public class PaperVo implements Serializable {
     private Long id;
 
     /**
-     * 试卷分类ID
+     * 试卷名称
      */
-    @ExcelProperty(value = "试卷分类ID", converter = ExcelDictConvert.class)
+    @ExcelProperty(value = "试卷名称")
+    private String title;
+
+    /**
+     * 试卷总分
+     */
+    @ExcelProperty(value = "试卷总分")
+    private Long score;
+
+    /**
+     * 及格分数
+     */
+    @ExcelProperty(value = "及格分数")
+    private Long passScore;
+
+    /**
+     * 分类ID
+     */
+    @ExcelProperty(value = "分类ID", converter = ExcelDictConvert.class)
     @ExcelDictFormat(dictType = "edu_type")
     private Long categoryId;
 
     /**
-     * 试卷名称
+     * 组卷方式（1:固定试卷, 2:随机试卷）
      */
-    @ExcelProperty(value = "试卷名称")
-    private String name;
+    @ExcelProperty(value = "组卷方式", converter = ExcelDictConvert.class)
+    @ExcelDictFormat(dictType = "exam_paper_type")
+    private Long combinationMode;
 
     /**
-     * 试卷类型
+     * 扩展配置（存储随机规则等JSON数据）
      */
-    @ExcelProperty(value = "试卷类型")
-    private Integer type;
-
-    /**
-     * 试题数
-     */
-    @ExcelProperty(value = "试题数")
-    private Integer questionCount;
-
-    /**
-     * 总分
-     */
-    @ExcelProperty(value = "总分")
-    private Integer totalScore;
-
-    /**
-     * 及格分
-     */
-    @ExcelProperty(value = "及格分")
-    private Integer passScore;
+    @ExcelProperty(value = "扩展配置", converter = ExcelDictConvert.class)
+    @ExcelDictFormat(readConverterExp = "存=储随机规则等JSON数据")
+    private String extra;
 
 
 }

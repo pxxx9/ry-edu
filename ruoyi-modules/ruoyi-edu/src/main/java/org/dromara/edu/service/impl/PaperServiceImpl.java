@@ -9,12 +9,12 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.dromara.edu.service.IPaperService;
 import org.springframework.stereotype.Service;
 import org.dromara.edu.domain.bo.PaperBo;
 import org.dromara.edu.domain.vo.PaperVo;
 import org.dromara.edu.domain.Paper;
 import org.dromara.edu.mapper.PaperMapper;
+import org.dromara.edu.service.IPaperService;
 
 import java.util.List;
 import java.util.Map;
@@ -24,7 +24,7 @@ import java.util.Collection;
  * 试卷Service业务层处理
  *
  * @author Pyx
- * @date 2025-07-03
+ * @date 2025-07-11
  */
 @Slf4j
 @RequiredArgsConstructor
@@ -74,7 +74,7 @@ public class PaperServiceImpl implements IPaperService {
         Map<String, Object> params = bo.getParams();
         LambdaQueryWrapper<Paper> lqw = Wrappers.lambdaQuery();
         lqw.orderByAsc(Paper::getId);
-        lqw.like(StringUtils.isNotBlank(bo.getName()), Paper::getName, bo.getName());
+        lqw.eq(StringUtils.isNotBlank(bo.getTitle()), Paper::getTitle, bo.getTitle());
         return lqw;
     }
 

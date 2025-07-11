@@ -3,5 +3,59 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.dromara.edu.mapper.ExamBankMapper">
+    <update id="incrementField">
+        UPDATE exam_bank
+        <set>
+            <!-- 这里通过 choose 判断要更新哪个字段 -->
+            <choose>
+                <when test="fieldName == 'single_choice_count'">
+                    single_choice_count = single_choice_count + 1
+                </when>
+                <when test="fieldName == 'multiple_choice_count'">
+                    multiple_choice_count = multiple_choice_count + 1
+                </when>
+                <when test="fieldName == 'fill_blank_count'">
+                    fill_blank_count = fill_blank_count + 1
+                </when>
+                <when test="fieldName == 'judge_count'">
+                    judge_count = judge_count + 1
+                </when>
+                <when test="fieldName == 'answer_count'">
+                    answer_count = answer_count + 1
+                </when>
+                <when test="fieldName == 'case_count'">
+                    case_count = case_count + 1
+                </when>
+            </choose>
+        </set>
+        WHERE id = #{bankId}
+    </update>
+
+    <update id="decrementField">
+        UPDATE exam_bank
+        <set>
+            <choose>
+                <when test="fieldName == 'single_choice_count'">
+                    single_choice_count = single_choice_count - #{count}
+                </when>
+                <when test="fieldName == 'multiple_choice_count'">
+                    multiple_choice_count = multiple_choice_count - #{count}
+                </when>
+                <when test="fieldName == 'fill_blank_count'">
+                    fill_blank_count = fill_blank_count - #{count}
+                </when>
+                <when test="fieldName == 'judge_count'">
+                    judge_count = judge_count - #{count}
+                </when>
+                <when test="fieldName == 'answer_count'">
+                    answer_count = answer_count - #{count}
+                </when>
+                <when test="fieldName == 'case_count'">
+                    case_count = case_count - #{count}
+                </when>
+            </choose>
+        </set>
+        WHERE id = #{bankId}
+    </update>
 
 </mapper>

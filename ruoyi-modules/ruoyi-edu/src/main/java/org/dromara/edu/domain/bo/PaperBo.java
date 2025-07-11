@@ -13,7 +13,7 @@ import jakarta.validation.constraints.*;
  * 试卷业务对象 exam_paper
  *
  * @author Pyx
- * @date 2025-07-03
+ * @date 2025-07-11
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -26,35 +26,35 @@ public class PaperBo extends BaseEntity {
     private Long id;
 
     /**
-     * 试卷分类ID
+     * 试卷名称
+     */
+    @NotBlank(message = "试卷名称不能为空", groups = { AddGroup.class, EditGroup.class })
+    private String title;
+
+    /**
+     * 试卷总分
+     */
+    private Long score;
+
+    /**
+     * 及格分数
+     */
+    private Long passScore;
+
+    /**
+     * 分类ID
      */
     private Long categoryId;
 
     /**
-     * 试卷名称
+     * 组卷方式（1:固定试卷, 2:随机试卷）
      */
-    @NotBlank(message = "试卷名称不能为空", groups = { AddGroup.class, EditGroup.class })
-    private String name;
+    private Long combinationMode;
 
     /**
-     * 试卷类型
+     * 扩展配置（存储随机规则等JSON数据）
      */
-    private Integer type;
-
-    /**
-     * 试题数
-     */
-    private Integer questionCount;
-
-    /**
-     * 总分
-     */
-    private Integer totalScore;
-
-    /**
-     * 及格分
-     */
-    private Integer passScore;
+    private String extra;
 
 
 }

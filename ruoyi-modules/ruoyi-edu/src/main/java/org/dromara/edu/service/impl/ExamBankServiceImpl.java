@@ -57,7 +57,13 @@ public class ExamBankServiceImpl implements IExamBankService {
         Page<ExamBankVo> result = baseMapper.selectVoPage(pageQuery.build(), lqw);
         return TableDataInfo.build(result);
     }
-
+    private LambdaQueryWrapper<ExamBank> buildQueryWrapper(ExamBankBo bo) {
+        Map<String, Object> params = bo.getParams();
+        LambdaQueryWrapper<ExamBank> lqw = Wrappers.lambdaQuery();
+        lqw.orderByAsc(ExamBank::getId);
+        lqw.like(StringUtils.isNotBlank(bo.getBankName()), ExamBank::getBankName, bo.getBankName());
+        return lqw;
+    }
     /**
      * 查询符合条件的题库列表
      *
@@ -70,13 +76,7 @@ public class ExamBankServiceImpl implements IExamBankService {
         return baseMapper.selectVoList(lqw);
     }
 
-    private LambdaQueryWrapper<ExamBank> buildQueryWrapper(ExamBankBo bo) {
-        Map<String, Object> params = bo.getParams();
-        LambdaQueryWrapper<ExamBank> lqw = Wrappers.lambdaQuery();
-        lqw.orderByAsc(ExamBank::getId);
-        lqw.like(StringUtils.isNotBlank(bo.getBankName()), ExamBank::getBankName, bo.getBankName());
-        return lqw;
-    }
+
 
     /**
      * 新增题库

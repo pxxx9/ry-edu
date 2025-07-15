@@ -8,15 +8,13 @@ import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Date;
-
 
 
 /**
  * 视频视图对象 material_video
  *
  * @author Pyx
- * @date 2025-07-07
+ * @date 2025-07-14
  */
 @Data
 @ExcelIgnoreUnannotated
@@ -51,16 +49,10 @@ public class VideoVo implements Serializable {
     private String videoDuration;
 
     /**
-     * 创建时间
+     * 分类
      */
-    @ExcelProperty(value = "创建时间")
-    private Date createTime;
-
-    /**
-     * 创建人
-     */
-    @ExcelProperty(value = "创建人")
-    private Long createBy;
+    @ExcelProperty(value = "分类")
+    private Long categoryId;
 
 
 }

@@ -1,4 +1,4 @@
-package org.dromara.web.controller;
+package org.dromara.edu.controller;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ import org.dromara.common.mybatis.core.page.TableDataInfo;
  * 视频
  *
  * @author Pyx
- * @date 2025-07-07
+ * @date 2025-07-14
  */
 @Validated
 @RequiredArgsConstructor

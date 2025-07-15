@@ -13,7 +13,7 @@ import jakarta.validation.constraints.*;
  * 视频业务对象 material_video
  *
  * @author Pyx
- * @date 2025-07-07
+ * @date 2025-07-14
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -28,18 +28,23 @@ public class VideoBo extends BaseEntity {
     /**
      * 视频名称
      */
+    @NotBlank(message = "视频名称不能为空", groups = { AddGroup.class, EditGroup.class })
     private String videoName;
 
     /**
      * 视频路径
      */
-    @NotBlank(message = "视频路径不能为空", groups = { AddGroup.class, EditGroup.class })
     private String videoPath;
 
     /**
      * 视频时长
      */
     private String videoDuration;
+
+    /**
+     * 分类
+     */
+    private Long categoryId;
 
 
 }

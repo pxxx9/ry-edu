@@ -1,22 +1,24 @@
 package org.dromara.edu.domain.vo;
 
-import org.dromara.common.translation.annotation.Translation;
-import org.dromara.common.translation.constant.TransConstant;
 import org.dromara.edu.domain.Image;
 import cn.idev.excel.annotation.ExcelIgnoreUnannotated;
 import cn.idev.excel.annotation.ExcelProperty;
+import org.dromara.common.excel.annotation.ExcelDictFormat;
+import org.dromara.common.excel.convert.ExcelDictConvert;
 import io.github.linpeilie.annotations.AutoMapper;
 import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Date;
+
 
 
 /**
  * 图片视图对象 material_image
  *
  * @author Pyx
- * @date 2025-07-09
+ * @date 2025-07-15
  */
 @Data
 @ExcelIgnoreUnannotated
@@ -27,33 +29,16 @@ public class ImageVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 对象存储主键
+     * 主键ID
      */
-    @ExcelProperty(value = "对象存储主键")
-    private Long imageId;
+    @ExcelProperty(value = "主键ID")
+    private Long id;
 
     /**
-     * 文件名
+     * 图片名称
      */
-    @ExcelProperty(value = "文件名")
+    @ExcelProperty(value = "图片名称")
     private String imageName;
-
-//    /**
-//     * 文件名Url
-//     */
-//    @Translation(type = TransConstant.OSS_ID_TO_URL, mapper = "imageName")
-//    private String imageNameUrl;
-    /**
-     * 原名
-     */
-    @ExcelProperty(value = "原名")
-    private String originalName;
-
-    /**
-     * 文件后缀名
-     */
-    @ExcelProperty(value = "文件后缀名")
-    private String imageSuffix;
 
     /**
      * URL地址
@@ -62,10 +47,10 @@ public class ImageVo implements Serializable {
     private String url;
 
     /**
-     * 扩展字段
+     * 分类
      */
-    @ExcelProperty(value = "扩展字段")
-    private String ext1;
+    @ExcelProperty(value = "分类")
+    private Long categoryId;
 
 
 }

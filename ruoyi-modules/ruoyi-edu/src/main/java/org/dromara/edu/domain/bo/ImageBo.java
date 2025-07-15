@@ -2,15 +2,18 @@ package org.dromara.edu.domain.bo;
 
 import org.dromara.edu.domain.Image;
 import org.dromara.common.mybatis.core.domain.BaseEntity;
+import org.dromara.common.core.validate.AddGroup;
+import org.dromara.common.core.validate.EditGroup;
 import io.github.linpeilie.annotations.AutoMapper;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import jakarta.validation.constraints.*;
 
 /**
  * 图片业务对象 material_image
  *
  * @author Pyx
- * @date 2025-07-09
+ * @date 2025-07-15
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -18,24 +21,15 @@ import lombok.EqualsAndHashCode;
 public class ImageBo extends BaseEntity {
 
     /**
-     * 对象存储主键
+     * 主键ID
      */
-    private Long imageId;
+    private Long id;
 
     /**
-     * 文件名
+     * 图片名称
      */
+    @NotBlank(message = "图片名称不能为空", groups = { AddGroup.class, EditGroup.class })
     private String imageName;
-
-    /**
-     * 原名
-     */
-    private String originalName;
-
-    /**
-     * 文件后缀名
-     */
-    private String imageSuffix;
 
     /**
      * URL地址
@@ -43,9 +37,9 @@ public class ImageBo extends BaseEntity {
     private String url;
 
     /**
-     * 扩展字段
+     * 分类
      */
-    private String ext1;
+    private Long categoryId;
 
 
 }

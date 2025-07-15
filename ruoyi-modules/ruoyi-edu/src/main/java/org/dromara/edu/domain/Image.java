@@ -11,7 +11,7 @@ import java.io.Serial;
  * 图片对象 material_image
  *
  * @author Pyx
- * @date 2025-07-09
+ * @date 2025-07-15
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -22,25 +22,15 @@ public class Image extends TenantEntity {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 对象存储主键
+     * 主键ID
      */
-    @TableId(value = "image_id")
-    private Long imageId;
+    @TableId(value = "id")
+    private Long id;
 
     /**
-     * 文件名
+     * 图片名称
      */
     private String imageName;
-
-    /**
-     * 原名
-     */
-    private String originalName;
-
-    /**
-     * 文件后缀名
-     */
-    private String imageSuffix;
 
     /**
      * URL地址
@@ -53,9 +43,15 @@ public class Image extends TenantEntity {
     private String ext1;
 
     /**
-     * 服务商
+     * 分类
      */
-    private String service;
+    private Long categoryId;
+
+    /**
+     * 删除标志（0-正常，1-删除）
+     */
+    @TableLogic
+    private Long delFlag;
 
 
 }

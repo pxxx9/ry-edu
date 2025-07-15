@@ -11,7 +11,7 @@ import java.io.Serial;
  * 视频对象 material_video
  *
  * @author Pyx
- * @date 2025-07-07
+ * @date 2025-07-14
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -41,6 +41,11 @@ public class Video extends TenantEntity {
      * 视频时长
      */
     private String videoDuration;
+
+    /**
+     * 分类
+     */
+    private Long categoryId;
 
     /**
      * 删除标志（0-正常，1-删除）

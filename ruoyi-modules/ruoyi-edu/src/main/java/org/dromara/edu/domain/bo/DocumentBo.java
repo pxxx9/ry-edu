@@ -13,7 +13,7 @@ import jakarta.validation.constraints.*;
  * 文档业务对象 material_document
  *
  * @author Pyx
- * @date 2025-07-09
+ * @date 2025-07-15
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -21,30 +21,32 @@ import jakarta.validation.constraints.*;
 public class DocumentBo extends BaseEntity {
 
     /**
-     * 对象存储主键
+     * 主键ID
      */
-    private Long documentId;
+    private Long id;
 
     /**
-     * 文件名
+     * 文档名称
      */
+    @NotBlank(message = "文档名称不能为空", groups = { AddGroup.class, EditGroup.class })
     private String documentName;
-
-    /**
-     * 原名
-     */
-    @NotBlank(message = "原名不能为空", groups = { AddGroup.class, EditGroup.class })
-    private String originalName;
-
-    /**
-     * 文件后缀名
-     */
-    private String documentSuffix;
 
     /**
      * URL地址
      */
     private String url;
+
+    private Long ossId;
+
+    /**
+     * 文档大小
+     */
+    private String size;
+
+    /**
+     * 分类
+     */
+    private Long categoryId;
 
 
 }

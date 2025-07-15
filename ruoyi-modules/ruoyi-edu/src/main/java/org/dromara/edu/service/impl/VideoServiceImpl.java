@@ -9,12 +9,11 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.dromara.edu.domain.Video;
+import org.springframework.stereotype.Service;
 import org.dromara.edu.domain.bo.VideoBo;
 import org.dromara.edu.domain.vo.VideoVo;
+import org.dromara.edu.domain.Video;
 import org.dromara.edu.mapper.VideoMapper;
-import org.springframework.stereotype.Service;
-
 import org.dromara.edu.service.IVideoService;
 
 import java.util.List;
@@ -25,7 +24,7 @@ import java.util.Collection;
  * 视频Service业务层处理
  *
  * @author Pyx
- * @date 2025-07-07
+ * @date 2025-07-14
  */
 @Slf4j
 @RequiredArgsConstructor
@@ -76,6 +75,7 @@ public class VideoServiceImpl implements IVideoService {
         LambdaQueryWrapper<Video> lqw = Wrappers.lambdaQuery();
         lqw.orderByAsc(Video::getId);
         lqw.like(StringUtils.isNotBlank(bo.getVideoName()), Video::getVideoName, bo.getVideoName());
+        lqw.eq(bo.getCategoryId() != null, Video::getCategoryId, bo.getCategoryId());
         return lqw;
     }
 

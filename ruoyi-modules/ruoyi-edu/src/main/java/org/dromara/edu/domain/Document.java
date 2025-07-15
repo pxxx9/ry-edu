@@ -11,7 +11,7 @@ import java.io.Serial;
  * 文档对象 material_document
  *
  * @author Pyx
- * @date 2025-07-09
+ * @date 2025-07-15
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -22,30 +22,27 @@ public class Document extends TenantEntity {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 对象存储主键
+     * 主键ID
      */
-    @TableId(value = "document_id")
-    private Long documentId;
+    @TableId(value = "id")
+    private Long id;
 
     /**
-     * 文件名
+     * 文档名称
      */
     private String documentName;
-
-    /**
-     * 原名
-     */
-    private String originalName;
-
-    /**
-     * 文件后缀名
-     */
-    private String documentSuffix;
 
     /**
      * URL地址
      */
     private String url;
+
+    private Long ossId;
+
+    /**
+     * 文档大小
+     */
+    private String size;
 
     /**
      * 扩展字段
@@ -53,9 +50,15 @@ public class Document extends TenantEntity {
     private String ext1;
 
     /**
-     * 服务商
+     * 分类
      */
-    private String service;
+    private Long categoryId;
+
+    /**
+     * 删除标志（0-正常，1-删除）
+     */
+    @TableLogic
+    private Long delFlag;
 
 
 }

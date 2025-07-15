@@ -8,7 +8,7 @@ import org.dromara.common.mybatis.core.mapper.BaseMapperPlus;
  * 视频Mapper接口
  *
  * @author Pyx
- * @date 2025-07-07
+ * @date 2025-07-14
  */
 public interface VideoMapper extends BaseMapperPlus<Video, VideoVo> {
 

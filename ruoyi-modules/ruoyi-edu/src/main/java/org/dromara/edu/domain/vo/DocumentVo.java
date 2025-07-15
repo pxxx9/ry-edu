@@ -14,7 +14,7 @@ import java.io.Serializable;
  * 文档视图对象 material_document
  *
  * @author Pyx
- * @date 2025-07-09
+ * @date 2025-07-15
  */
 @Data
 @ExcelIgnoreUnannotated
@@ -25,34 +25,36 @@ public class DocumentVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 对象存储主键
+     * 主键ID
      */
-    @ExcelProperty(value = "对象存储主键")
-    private Long documentId;
+    @ExcelProperty(value = "主键ID")
+    private Long id;
 
     /**
-     * 文件名
+     * 文档名称
      */
-    @ExcelProperty(value = "文件名")
+    @ExcelProperty(value = "文档名称")
     private String documentName;
-
-    /**
-     * 原名
-     */
-    @ExcelProperty(value = "原名")
-    private String originalName;
-
-    /**
-     * 文件后缀名
-     */
-    @ExcelProperty(value = "文件后缀名")
-    private String documentSuffix;
 
     /**
      * URL地址
      */
     @ExcelProperty(value = "URL地址")
     private String url;
+
+    private Long ossId;
+
+    /**
+     * 文档大小
+     */
+    @ExcelProperty(value = "文档大小")
+    private String size;
+
+    /**
+     * 分类
+     */
+    @ExcelProperty(value = "分类")
+    private Long categoryId;
 
 
 }

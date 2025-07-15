@@ -5,20 +5,24 @@ import org.dromara.edu.domain.bo.ImageBo;
 import org.dromara.common.mybatis.core.page.TableDataInfo;
 import org.dromara.common.mybatis.core.page.PageQuery;
 
-import jakarta.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 图片Service接口
  *
  * @author Pyx
- * @date 2025-07-09
+ * @date 2025-07-15
  */
 public interface IImageService {
+
+    /**
+     * 查询图片
+     *
+     * @param id 主键
+     * @return 图片
+     */
+    ImageVo queryById(Long id);
 
     /**
      * 分页查询图片列表
@@ -30,53 +34,35 @@ public interface IImageService {
     TableDataInfo<ImageVo> queryPageList(ImageBo bo, PageQuery pageQuery);
 
     /**
-     * 根据一组ID获取对应的图片列表
+     * 查询符合条件的图片列表
      *
-     * @param imageIds 图片ID集合
-     * @return 图片VO列表
+     * @param bo 查询条件
+     * @return 图片列表
      */
-    List<ImageVo> listByIds(Collection<Long> imageIds);
+    List<ImageVo> queryList(ImageBo bo);
 
     /**
-     * 根据ID获取图片详细信息
+     * 新增图片
      *
-     * @param imageId 主键
-     * @return 图片VO
+     * @param bo 图片
+     * @return 是否新增成功
      */
-    ImageVo getById(Long imageId);
+    Boolean insertByBo(ImageBo bo);
 
     /**
-     * 上传MultipartFile图片文件
+     * 修改图片
      *
-     * @param file 上传文件
-     * @return 图片VO
+     * @param bo 图片
+     * @return 是否修改成功
      */
-    ImageVo upload(MultipartFile file);
+    Boolean updateByBo(ImageBo bo);
 
     /**
-     * 上传File类型的图片文件
+     * 校验并批量删除图片信息
      *
-     * @param file 上传文件
-     * @return 图片VO
-     */
-    ImageVo upload(File file);
-
-    /**
-     * 下载图片文件
-     *
-     * @param imageId 图片ID
-     * @param response HTTP响应对象
-     * @throws IOException 文件处理异常
-     */
-    void download(Long imageId, HttpServletResponse response) throws IOException;
-
-
-    /**
-     * 校验并批量删除图片
-     *
-     * @param ids     待删除ID集合
-     * @param isValid 是否进行校验
-     * @return 操作结果
+     * @param ids     待删除的主键集合
+     * @param isValid 是否进行有效性校验
+     * @return 是否删除成功
      */
     Boolean deleteWithValidByIds(Collection<Long> ids, Boolean isValid);
 }

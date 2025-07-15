@@ -1,10 +1,9 @@
 package org.dromara.edu.service;
 
-
-import org.dromara.common.mybatis.core.page.PageQuery;
-import org.dromara.common.mybatis.core.page.TableDataInfo;
-import org.dromara.edu.domain.bo.VideoBo;
 import org.dromara.edu.domain.vo.VideoVo;
+import org.dromara.edu.domain.bo.VideoBo;
+import org.dromara.common.mybatis.core.page.TableDataInfo;
+import org.dromara.common.mybatis.core.page.PageQuery;
 
 import java.util.Collection;
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.List;
  * 视频Service接口
  *
  * @author Pyx
- * @date 2025-07-07
+ * @date 2025-07-14
  */
 public interface IVideoService {
 
